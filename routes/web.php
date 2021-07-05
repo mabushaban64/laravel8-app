@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
    // return view('welcome');
-   // return view('layouts.layout');
-    return view('pages.index');
-  //return view('auth.verify-email');
+  // return view('auth.verify-email');
+  //return view('auth.password-reset');
+ // return view('auth.forget-password');
+ // return view('auth.password-confirmation');
+  return view('pages.index');
 
 });

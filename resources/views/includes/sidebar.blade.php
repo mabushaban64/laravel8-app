@@ -2,7 +2,7 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="index.html">
+        <a href="{{ route('dashboard') }}">
             <img alt="Logo" src="assets/media/logos/logo-1.svg" class="h-15px logo" />
         </a>
         <!--end::Logo-->
@@ -30,7 +30,7 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <div class="menu-item">
-                    <a class="menu-link active" href="index.html">
+                    <a class="menu-link active" href="{{ route('dashboard') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/PenAndRuller.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -44,6 +44,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
+                {{--
                 <div class="menu-item">
                     <a class="menu-link" href="landing.html">
                         <span class="menu-icon">
@@ -59,7 +60,7 @@
                         <span class="menu-title">Landing</span>
                     </a>
                 </div>
-                {{--  <div class="menu-item">
+                <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
                     </div>

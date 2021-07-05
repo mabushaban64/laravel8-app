@@ -11,7 +11,7 @@
     <!--end::Message-->
     <!--begin::Action-->
     <div class="text-center">
-        <a href="authentication/flows/basic/sign-in.html" class="btn btn-primary btn-lg fw-bolder">Sign In</a>
+        <a href="{{ route('signin') }}" class="btn btn-primary btn-lg fw-bolder">Sign In</a>
     </div>
     <!--end::Action-->
     <!--begin::Action-->

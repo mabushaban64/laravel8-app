@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('pages.index');})->name('dashboard');
 Route::get('/profile', function () {return view('pages.profile');})->name('profile');
+Route::get('/login', function () {return view('auth.signin');})->name('signin');
+Route::get('/register', function () {return view('auth.signup');})->name('signup');
+Route::get('/forget-password', function () {return view('auth.forget-password');})->name('forget-password');
+

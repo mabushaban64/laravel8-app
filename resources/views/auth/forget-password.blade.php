@@ -11,7 +11,7 @@
             <!--end::Title-->
             <!--begin::Link-->
             <div class="text-gray-400 fw-bold fs-4">Already have reset your password ?
-            <a href="authentication/flows/basic/sign-up.html" class="link-primary fw-bolder">Sign in here</a></div>
+            <a href="{{ route('signin') }}" class="link-primary fw-bolder">Sign in here</a></div>
             <!--end::Link-->
         </div>
         <!--begin::Heading-->

@@ -1,5 +1,5 @@
 @extends('auth.layout')
-@section('title' , __("Email Verfication"))
+@section('title' , __("Email Verification"))
 @section('body')
 <div class="pt-lg-10">
     <!--begin::Logo-->

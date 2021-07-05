@@ -11,7 +11,7 @@
             <!--end::Title-->
             <!--begin::Link-->
             <div class="text-gray-400 fw-bold fs-4">New Here?
-            <a href="authentication/flows/basic/sign-up.html" class="link-primary fw-bolder">Create an Account</a></div>
+            <a href="{{ route('signup') }}" class="link-primary fw-bolder">Create an Account</a></div>
             <!--end::Link-->
         </div>
         <!--begin::Heading-->
@@ -33,7 +33,7 @@
                 <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
                 <!--end::Label-->
                 <!--begin::Link-->
-                <a href="authentication/flows/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                <a href="{{ route('forget-password') }}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
                 <!--end::Link-->
             </div>
             <!--end::Wrapper-->

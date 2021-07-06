@@ -1,369 +1,260 @@
-<div id="kt_drawer_chat" class="bg-white" data-kt-drawer="true" data-kt-drawer-name="chat" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
-    <!--begin::Messenger-->
-    <div class="card w-100" id="kt_drawer_chat_messenger">
-        <!--begin::Card header-->
-        <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
-            <!--begin::Title-->
-            <div class="card-title">
-                <!--begin::User-->
-                <div class="d-flex justify-content-center flex-column me-3">
-                    <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1">Brian Cox</a>
-                    <!--begin::Info-->
-                    <div class="mb-0 lh-1">
-                        <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-                        <span class="fs-7 fw-bold text-gray-400">Active</span>
-                    </div>
-                    <!--end::Info-->
-                </div>
-                <!--end::User-->
-            </div>
-            <!--end::Title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar">
-                <!--begin::Menu-->
-                <div class="me-2">
-                    <button class="btn btn-sm btn-icon btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                        <i class="bi bi-three-dots fs-3"></i>
-                    </button>
-                    <!--begin::Menu 3-->
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-                        <!--begin::Heading-->
-                        <div class="menu-item px-3">
-                            <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Contacts</div>
-                        </div>
-                        <!--end::Heading-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">Add Contact</a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link flex-stack px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">Invite Contacts
-                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a contact email to send an invitation"></i></a>
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start" data-kt-menu-flip="left, center, top">
-                            <a href="#" class="menu-link px-3">
-                                <span class="menu-title">Groups</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <!--begin::Menu sub-->
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="Coming soon">Create Group</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="Coming soon">Invite Members</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="Coming soon">Settings</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3 my-1">
-                            <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="Coming soon">Settings</a>
-                        </div>
-                        <!--end::Menu item-->
-                    </div>
-                    <!--end::Menu 3-->
-                </div>
-                <!--end::Menu-->
-                <!--begin::Close-->
-                <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_chat_close">
-                    <!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
-                    <span class="svg-icon svg-icon-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                            <g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
-                                <rect fill="#000000" x="0" y="7" width="16" height="2" rx="1" />
-                                <rect fill="#000000" opacity="0.5" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)" x="0" y="7" width="16" height="2" rx="1" />
-                            </g>
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::Close-->
-            </div>
-            <!--end::Card toolbar-->
-        </div>
-        <!--end::Card header-->
-        <!--begin::Card body-->
-        <div class="card-body" id="kt_drawer_chat_messenger_body">
-            <!--begin::Messages-->
-            <div class="scroll-y me-n5 pe-5" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer" data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body" data-kt-scroll-offset="0px">
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                <span class="text-muted fs-7 mb-1">2 mins</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">How likely are you to recommend our company to your friends and family ?</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(out)-->
-                <div class="d-flex justify-content-end mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">5 mins</span>
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-2.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end" data-kt-element="message-text">Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                <span class="text-muted fs-7 mb-1">1 Hour</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">Ok, Understood!</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(out)-->
-                <div class="d-flex justify-content-end mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">2 Hours</span>
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-2.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end" data-kt-element="message-text">You’ll receive notifications for all issues, pull requests!</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                <span class="text-muted fs-7 mb-1">3 Hours</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">You can unwatch this repository immediately by clicking here:
-                        <a href="https://keenthemes.com">Keenthemes.com</a></div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(out)-->
-                <div class="d-flex justify-content-end mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">4 Hours</span>
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-2.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end" data-kt-element="message-text">Most purchased Business courses during this sale!</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(out)-->
-                <!--begin::Message(in)-->
-                <div class="d-flex justify-content-start mb-10">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                <span class="text-muted fs-7 mb-1">5 Hours</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(in)-->
-                <!--begin::Message(template for out)-->
-                <div class="d-flex justify-content-end mb-10 d-none" data-kt-element="template-out">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-end">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Details-->
-                            <div class="me-3">
-                                <span class="text-muted fs-7 mb-1">Just now</span>
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">You</a>
-                            </div>
-                            <!--end::Details-->
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-2.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end" data-kt-element="message-text"></div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(template for out)-->
-                <!--begin::Message(template for in)-->
-                <div class="d-flex justify-content-start mb-10 d-none" data-kt-element="template-in">
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-column align-items-start">
-                        <!--begin::User-->
-                        <div class="d-flex align-items-center mb-2">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-35px symbol-circle">
-                                <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Details-->
-                            <div class="ms-3">
-                                <a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                <span class="text-muted fs-7 mb-1">Just now</span>
-                            </div>
-                            <!--end::Details-->
-                        </div>
-                        <!--end::User-->
-                        <!--begin::Text-->
-                        <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">Right before vacation season we have the next Big Deal for you.</div>
-                        <!--end::Text-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Message(template for in)-->
-            </div>
-            <!--end::Messages-->
-        </div>
-        <!--end::Card body-->
-        <!--begin::Card footer-->
-        <div class="card-footer pt-4" id="kt_drawer_chat_messenger_footer">
-            <!--begin::Input-->
-            <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Type a message"></textarea>
-            <!--end::Input-->
-            <!--begin:Toolbar-->
-            <div class="d-flex flex-stack">
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center me-2">
-                    <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button" data-bs-toggle="tooltip" title="Coming soon">
-                        <i class="bi bi-paperclip fs-3"></i>
-                    </button>
-                    <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button" data-bs-toggle="tooltip" title="Coming soon">
-                        <i class="bi bi-upload fs-3"></i>
-                    </button>
-                </div>
-                <!--end::Actions-->
-                <!--begin::Send-->
-                <button class="btn btn-primary" type="button" data-kt-element="send">Send</button>
-                <!--end::Send-->
-            </div>
-            <!--end::Toolbar-->
-        </div>
-        <!--end::Card footer-->
-    </div>
-    <!--end::Messenger-->
-</div>
+
+		<div class="modal modal-sticky modal-sticky-bottom-right" id="kt_chat_modal" role="dialog" data-backdrop="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<!--begin::Card-->
+					<div class="card card-custom">
+						<!--begin::Header-->
+						<div class="card-header align-items-center px-4 py-3">
+							<div class="text-left flex-grow-1">
+								<!--begin::Dropdown Menu-->
+								<div class="dropdown dropdown-inline">
+									<button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="svg-icon svg-icon-lg">
+											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+													<polygon points="0 0 24 0 24 24 0 24" />
+													<path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+													<path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+												</g>
+											</svg>
+											<!--end::Svg Icon-->
+										</span>
+									</button>
+									<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-md">
+										<!--begin::Navigation-->
+										<ul class="navi navi-hover py-5">
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-drop"></i>
+													</span>
+													<span class="navi-text">New Group</span>
+												</a>
+											</li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-list-3"></i>
+													</span>
+													<span class="navi-text">Contacts</span>
+												</a>
+											</li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-rocket-1"></i>
+													</span>
+													<span class="navi-text">Groups</span>
+													<span class="navi-link-badge">
+														<span class="label label-light-primary label-inline font-weight-bold">new</span>
+													</span>
+												</a>
+											</li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-bell-2"></i>
+													</span>
+													<span class="navi-text">Calls</span>
+												</a>
+											</li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-gear"></i>
+													</span>
+													<span class="navi-text">Settings</span>
+												</a>
+											</li>
+											<li class="navi-separator my-3"></li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-magnifier-tool"></i>
+													</span>
+													<span class="navi-text">Help</span>
+												</a>
+											</li>
+											<li class="navi-item">
+												<a href="#" class="navi-link">
+													<span class="navi-icon">
+														<i class="flaticon2-bell-2"></i>
+													</span>
+													<span class="navi-text">Privacy</span>
+													<span class="navi-link-badge">
+														<span class="label label-light-danger label-rounded font-weight-bold">5</span>
+													</span>
+												</a>
+											</li>
+										</ul>
+										<!--end::Navigation-->
+									</div>
+								</div>
+								<!--end::Dropdown Menu-->
+							</div>
+							<div class="text-center flex-grow-1">
+								<div class="text-dark-75 font-weight-bold font-size-h5">Matt Pears</div>
+								<div>
+									<span class="label label-dot label-success"></span>
+									<span class="font-weight-bold text-muted font-size-sm">Active</span>
+								</div>
+							</div>
+							<div class="text-right flex-grow-1">
+								<button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-dismiss="modal">
+									<i class="ki ki-close icon-1x"></i>
+								</button>
+							</div>
+						</div>
+						<!--end::Header-->
+						<!--begin::Body-->
+						<div class="card-body">
+							<!--begin::Scroll-->
+							<div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
+								<!--begin::Messages-->
+								<div class="messages">
+									<!--begin::Message In-->
+									<div class="d-flex flex-column mb-5 align-items-start">
+										<div class="d-flex align-items-center">
+											<div class="symbol symbol-circle symbol-40 mr-3">
+												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+											</div>
+											<div>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+												<span class="text-muted font-size-sm">2 Hours</span>
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">How likely are you to recommend our company to your friends and family?</div>
+									</div>
+									<!--end::Message In-->
+									<!--begin::Message Out-->
+									<div class="d-flex flex-column mb-5 align-items-end">
+										<div class="d-flex align-items-center">
+											<div>
+												<span class="text-muted font-size-sm">3 minutes</span>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+											</div>
+											<div class="symbol symbol-circle symbol-40 ml-3">
+												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.</div>
+									</div>
+									<!--end::Message Out-->
+									<!--begin::Message In-->
+									<div class="d-flex flex-column mb-5 align-items-start">
+										<div class="d-flex align-items-center">
+											<div class="symbol symbol-circle symbol-40 mr-3">
+												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+											</div>
+											<div>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+												<span class="text-muted font-size-sm">40 seconds</span>
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">Ok, Understood!</div>
+									</div>
+									<!--end::Message In-->
+									<!--begin::Message Out-->
+									<div class="d-flex flex-column mb-5 align-items-end">
+										<div class="d-flex align-items-center">
+											<div>
+												<span class="text-muted font-size-sm">Just now</span>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+											</div>
+											<div class="symbol symbol-circle symbol-40 ml-3">
+												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">You’ll receive notifications for all issues, pull requests!</div>
+									</div>
+									<!--end::Message Out-->
+									<!--begin::Message In-->
+									<div class="d-flex flex-column mb-5 align-items-start">
+										<div class="d-flex align-items-center">
+											<div class="symbol symbol-circle symbol-40 mr-3">
+												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+											</div>
+											<div>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+												<span class="text-muted font-size-sm">40 seconds</span>
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">You can unwatch this repository immediately by clicking here:
+										<a href="#">https://github.com</a></div>
+									</div>
+									<!--end::Message In-->
+									<!--begin::Message Out-->
+									<div class="d-flex flex-column mb-5 align-items-end">
+										<div class="d-flex align-items-center">
+											<div>
+												<span class="text-muted font-size-sm">Just now</span>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+											</div>
+											<div class="symbol symbol-circle symbol-40 ml-3">
+												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Discover what students who viewed Learn Figma - UI/UX Design. Essential Training also viewed</div>
+									</div>
+									<!--end::Message Out-->
+									<!--begin::Message In-->
+									<div class="d-flex flex-column mb-5 align-items-start">
+										<div class="d-flex align-items-center">
+											<div class="symbol symbol-circle symbol-40 mr-3">
+												<img alt="Pic" src="assets/media/users/300_12.jpg" />
+											</div>
+											<div>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+												<span class="text-muted font-size-sm">40 seconds</span>
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">Most purchased Business courses during this sale!</div>
+									</div>
+									<!--end::Message In-->
+									<!--begin::Message Out-->
+									<div class="d-flex flex-column mb-5 align-items-end">
+										<div class="d-flex align-items-center">
+											<div>
+												<span class="text-muted font-size-sm">Just now</span>
+												<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+											</div>
+											<div class="symbol symbol-circle symbol-40 ml-3">
+												<img alt="Pic" src="assets/media/users/300_21.jpg" />
+											</div>
+										</div>
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
+									</div>
+									<!--end::Message Out-->
+								</div>
+								<!--end::Messages-->
+							</div>
+							<!--end::Scroll-->
+						</div>
+						<!--end::Body-->
+						<!--begin::Footer-->
+						<div class="card-footer align-items-center">
+							<!--begin::Compose-->
+							<textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
+							<div class="d-flex align-items-center justify-content-between mt-5">
+								<div class="mr-3">
+									<a href="#" class="btn btn-clean btn-icon btn-md mr-1">
+										<i class="flaticon2-photograph icon-lg"></i>
+									</a>
+									<a href="#" class="btn btn-clean btn-icon btn-md">
+										<i class="flaticon2-photo-camera icon-lg"></i>
+									</a>
+								</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
+								</div>
+							</div>
+							<!--begin::Compose-->
+						</div>
+						<!--end::Footer-->
+					</div>
+					<!--end::Card-->
+				</div>
+			</div>
+		</div>

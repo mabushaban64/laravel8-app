@@ -4,7 +4,7 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.8.1 (2021-05-20)
+ * Version: 5.6.2 (2020-12-08)
  */
 (function () {
     'use strict';
@@ -26,19 +26,6 @@
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
     var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
-
-    var isSimpleType = function (type) {
-      return function (value) {
-        return typeof value === type;
-      };
-    };
-    var isNullable = function (a) {
-      return a === null || a === undefined;
-    };
-    var isNonNullable = function (a) {
-      return !isNullable(a);
-    };
-    var isFunction = isSimpleType('function');
 
     var noop = function () {
     };
@@ -156,30 +143,43 @@
       from: from
     };
 
-    var create = function (width, height) {
-      return resize(document.createElement('canvas'), width, height);
+    var isSimpleType = function (type) {
+      return function (value) {
+        return typeof value === type;
+      };
     };
-    var clone = function (canvas) {
+    var isNullable = function (a) {
+      return a === null || a === undefined;
+    };
+    var isNonNullable = function (a) {
+      return !isNullable(a);
+    };
+    var isFunction = isSimpleType('function');
+
+    function create(width, height) {
+      return resize(document.createElement('canvas'), width, height);
+    }
+    function clone(canvas) {
       var tCanvas = create(canvas.width, canvas.height);
       var ctx = get2dContext(tCanvas);
       ctx.drawImage(canvas, 0, 0);
       return tCanvas;
-    };
-    var get2dContext = function (canvas) {
+    }
+    function get2dContext(canvas) {
       return canvas.getContext('2d');
-    };
-    var resize = function (canvas, width, height) {
+    }
+    function resize(canvas, width, height) {
       canvas.width = width;
       canvas.height = height;
       return canvas;
-    };
+    }
 
-    var getWidth = function (image) {
+    function getWidth(image) {
       return image.naturalWidth || image.width;
-    };
-    var getHeight = function (image) {
+    }
+    function getHeight(image) {
       return image.naturalHeight || image.height;
-    };
+    }
 
     var promise = function () {
       var Promise = function (fn) {
@@ -196,17 +196,13 @@
       };
       var anyWindow = window;
       var asap = Promise.immediateFn || typeof anyWindow.setImmediate === 'function' && anyWindow.setImmediate || function (fn) {
-        return setTimeout(fn, 1);
+        setTimeout(fn, 1);
       };
-      var bind = function (fn, thisArg) {
+      function bind(fn, thisArg) {
         return function () {
-          var args = [];
-          for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-          }
-          return fn.apply(thisArg, args);
+          return fn.apply(thisArg, arguments);
         };
-      };
+      }
       var isArray = Array.isArray || function (value) {
         return Object.prototype.toString.call(value) === '[object Array]';
       };
@@ -269,7 +265,7 @@
         this.resolve = resolve;
         this.reject = reject;
       }
-      var doResolve = function (fn, onFulfilled, onRejected) {
+      function doResolve(fn, onFulfilled, onRejected) {
         var done = false;
         try {
           fn(function (value) {
@@ -292,7 +288,7 @@
           done = true;
           onRejected(ex);
         }
-      };
+      }
       Promise.prototype.catch = function (onRejected) {
         return this.then(null, onRejected);
       };
@@ -313,7 +309,7 @@
             return resolve([]);
           }
           var remaining = args.length;
-          var res = function (i, val) {
+          function res(i, val) {
             try {
               if (val && (typeof val === 'object' || typeof val === 'function')) {
                 var then = val.then;
@@ -331,7 +327,7 @@
             } catch (ex) {
               reject(ex);
             }
-          };
+          }
           for (var i = 0; i < args.length; i++) {
             res(i, args[i]);
           }
@@ -362,14 +358,14 @@
     };
     var Promise = window.Promise ? window.Promise : promise();
 
-    var imageToBlob = function (image) {
+    function imageToBlob(image) {
       var src = image.src;
       if (src.indexOf('data:') === 0) {
         return dataUriToBlob(src);
       }
       return anyUriToBlob(src);
-    };
-    var blobToImage = function (blob) {
+    }
+    function blobToImage(blob) {
       return new Promise(function (resolve, reject) {
         var blobUrl = URL.createObjectURL(blob);
         var image = new Image();
@@ -377,23 +373,23 @@
           image.removeEventListener('load', loaded);
           image.removeEventListener('error', error);
         };
-        var loaded = function () {
+        function loaded() {
           removeListeners();
           resolve(image);
-        };
-        var error = function () {
+        }
+        function error() {
           removeListeners();
           reject('Unable to load data of type ' + blob.type + ': ' + blobUrl);
-        };
+        }
         image.addEventListener('load', loaded);
         image.addEventListener('error', error);
         image.src = blobUrl;
         if (image.complete) {
-          setTimeout(loaded, 0);
+          loaded();
         }
       });
-    };
-    var anyUriToBlob = function (url) {
+    }
+    function anyUriToBlob(url) {
       return new Promise(function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -418,8 +414,8 @@
         };
         xhr.send();
       });
-    };
-    var dataUriToBlobSync = function (uri) {
+    }
+    function dataUriToBlobSync(uri) {
       var data = uri.split(',');
       var matches = /data:([^;]+)/.exec(data[0]);
       if (!matches) {
@@ -442,15 +438,15 @@
         byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
       return Optional.some(new Blob(byteArrays, { type: mimetype }));
-    };
-    var dataUriToBlob = function (uri) {
+    }
+    function dataUriToBlob(uri) {
       return new Promise(function (resolve, reject) {
         dataUriToBlobSync(uri).fold(function () {
           reject('uri is not base64: ' + uri);
         }, resolve);
       });
-    };
-    var canvasToBlob = function (canvas, type, quality) {
+    }
+    function canvasToBlob(canvas, type, quality) {
       type = type || 'image/png';
       if (isFunction(HTMLCanvasElement.prototype.toBlob)) {
         return new Promise(function (resolve, reject) {
@@ -465,12 +461,12 @@
       } else {
         return dataUriToBlob(canvas.toDataURL(type, quality));
       }
-    };
-    var canvasToDataURL = function (canvas, type, quality) {
+    }
+    function canvasToDataURL(canvas, type, quality) {
       type = type || 'image/png';
       return canvas.toDataURL(type, quality);
-    };
-    var blobToCanvas = function (blob) {
+    }
+    function blobToCanvas(blob) {
       return blobToImage(blob).then(function (image) {
         revokeImageUrl(image);
         var canvas = create(getWidth(image), getHeight(image));
@@ -478,8 +474,8 @@
         context.drawImage(image, 0, 0);
         return canvas;
       });
-    };
-    var blobToDataUri = function (blob) {
+    }
+    function blobToDataUri(blob) {
       return new Promise(function (resolve) {
         var reader = new FileReader();
         reader.onloadend = function () {
@@ -487,10 +483,10 @@
         };
         reader.readAsDataURL(blob);
       });
-    };
-    var revokeImageUrl = function (image) {
+    }
+    function revokeImageUrl(image) {
       URL.revokeObjectURL(image.src);
-    };
+    }
 
     var blobToImage$1 = function (blob) {
       return blobToImage(blob);
@@ -526,34 +522,34 @@
       return findUntil(xs, pred, never);
     };
 
-    var create$1 = function (getCanvas, blob, uri) {
+    function create$1(getCanvas, blob, uri) {
       var initialType = blob.type;
       var getType = constant(initialType);
-      var toBlob = function () {
+      function toBlob() {
         return Promise.resolve(blob);
-      };
+      }
       var toDataURL = constant(uri);
-      var toBase64 = function () {
+      function toBase64() {
         return uri.split(',')[1];
-      };
-      var toAdjustedBlob = function (type, quality) {
+      }
+      function toAdjustedBlob(type, quality) {
         return getCanvas.then(function (canvas) {
           return canvasToBlob(canvas, type, quality);
         });
-      };
-      var toAdjustedDataURL = function (type, quality) {
+      }
+      function toAdjustedDataURL(type, quality) {
         return getCanvas.then(function (canvas) {
           return canvasToDataURL(canvas, type, quality);
         });
-      };
-      var toAdjustedBase64 = function (type, quality) {
+      }
+      function toAdjustedBase64(type, quality) {
         return toAdjustedDataURL(type, quality).then(function (dataurl) {
           return dataurl.split(',')[1];
         });
-      };
-      var toCanvas = function () {
+      }
+      function toCanvas() {
         return getCanvas.then(clone);
-      };
+      }
       return {
         getType: getType,
         toBlob: toBlob,
@@ -564,53 +560,49 @@
         toAdjustedBase64: toAdjustedBase64,
         toCanvas: toCanvas
       };
-    };
-    var fromBlob = function (blob) {
+    }
+    function fromBlob(blob) {
       return blobToDataUri(blob).then(function (uri) {
         return create$1(blobToCanvas(blob), blob, uri);
       });
-    };
-    var fromCanvas = function (canvas, type) {
+    }
+    function fromCanvas(canvas, type) {
       return canvasToBlob(canvas, type).then(function (blob) {
         return create$1(Promise.resolve(canvas), blob, canvas.toDataURL());
       });
-    };
+    }
 
-    var ceilWithPrecision = function (num, precision) {
-      if (precision === void 0) {
-        precision = 2;
-      }
-      var mul = Math.pow(10, precision);
-      var upper = Math.round(num * mul);
-      return Math.ceil(upper / mul);
-    };
-    var rotate = function (ir, angle) {
+    function rotate(ir, angle) {
       return ir.toCanvas().then(function (canvas) {
         return applyRotate(canvas, ir.getType(), angle);
       });
-    };
-    var applyRotate = function (image, type, angle) {
-      var degrees = angle < 0 ? 360 + angle : angle;
-      var rad = degrees * Math.PI / 180;
-      var width = image.width;
-      var height = image.height;
-      var sin = Math.sin(rad);
-      var cos = Math.cos(rad);
-      var newWidth = ceilWithPrecision(Math.abs(width * cos) + Math.abs(height * sin));
-      var newHeight = ceilWithPrecision(Math.abs(width * sin) + Math.abs(height * cos));
-      var canvas = create(newWidth, newHeight);
+    }
+    function applyRotate(image, type, angle) {
+      var canvas = create(image.width, image.height);
       var context = get2dContext(canvas);
-      context.translate(newWidth / 2, newHeight / 2);
-      context.rotate(rad);
-      context.drawImage(image, -width / 2, -height / 2);
+      var translateX = 0;
+      var translateY = 0;
+      angle = angle < 0 ? 360 + angle : angle;
+      if (angle === 90 || angle === 270) {
+        resize(canvas, canvas.height, canvas.width);
+      }
+      if (angle === 90 || angle === 180) {
+        translateX = canvas.width;
+      }
+      if (angle === 270 || angle === 180) {
+        translateY = canvas.height;
+      }
+      context.translate(translateX, translateY);
+      context.rotate(angle * Math.PI / 180);
+      context.drawImage(image, 0, 0);
       return fromCanvas(canvas, type);
-    };
-    var flip = function (ir, axis) {
+    }
+    function flip(ir, axis) {
       return ir.toCanvas().then(function (canvas) {
         return applyFlip(canvas, ir.getType(), axis);
       });
-    };
-    var applyFlip = function (image, type, axis) {
+    }
+    function applyFlip(image, type, axis) {
       var canvas = create(image.width, image.height);
       var context = get2dContext(canvas);
       if (axis === 'v') {
@@ -621,7 +613,7 @@
         context.drawImage(image, -canvas.width, 0);
       }
       return fromCanvas(canvas, type);
-    };
+    }
 
     var flip$1 = function (ir, axis) {
       return flip(ir, axis);
@@ -905,11 +897,11 @@
       return editor.getParam('images_reuse_filename', false, 'boolean');
     };
 
-    var getImageSize = function (img) {
+    function getImageSize(img) {
       var width, height;
-      var isPxValue = function (value) {
+      function isPxValue(value) {
         return /^[0-9\.]+px$/.test(value);
-      };
+      }
       width = img.style.width;
       height = img.style.height;
       if (width || height) {
@@ -930,8 +922,8 @@
         };
       }
       return null;
-    };
-    var setImageSize = function (img, size) {
+    }
+    function setImageSize(img, size) {
       var width, height;
       if (size) {
         width = img.style.width;
@@ -948,13 +940,13 @@
           img.setAttribute('height', String(size.h));
         }
       }
-    };
-    var getNaturalImageSize = function (img) {
+    }
+    function getNaturalImageSize(img) {
       return {
         w: img.naturalWidth,
         h: img.naturalHeight
       };
-    };
+    }
 
     var count = 0;
     var getFigureImg = function (elem) {
@@ -1074,7 +1066,7 @@
         });
         blobCache.add(blobInfo);
         editor.undoManager.transact(function () {
-          var imageLoadedHandler = function () {
+          function imageLoadedHandler() {
             editor.$(selectedImage).off('load', imageLoadedHandler);
             editor.nodeChanged();
             if (uploadImmediately) {
@@ -1083,7 +1075,7 @@
               cancelTimedUpload(imageUploadTimerState);
               startTimedUpload(editor, imageUploadTimerState);
             }
-          };
+          }
           editor.$(selectedImage).on('load', imageLoadedHandler);
           if (size) {
             editor.$(selectedImage).attr({
@@ -1150,6 +1142,7 @@
         return blob;
       }).then(blobToImageResult).then(function (imageResult) {
         return updateSelectedImage(editor, blob, imageResult, true, imageUploadTimerState, img);
+      }).catch(function () {
       });
     };
 
@@ -1201,7 +1194,8 @@
               });
               api.close();
             },
-            onCancel: noop,
+            onCancel: function () {
+            },
             onAction: function (api, details) {
               switch (details.name) {
               case saveState:

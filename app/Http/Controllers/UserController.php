@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DataTables;
+use Validator;
 
 class UserController extends Controller
 {
@@ -30,69 +31,61 @@ class UserController extends Controller
         return view('pages.users');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        if (!$validator->passes()) {
+			return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
+        $user  =  User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        //return response()->json(array('user-ajax'=>$user));
+        return response()->json($user);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $user  =  User::findOrFail($id);
+        $user_name = $user->name;
+        if(!empty($user)) {
+            $user->delete();
+            $data['msg'] =  'success';
+            $data['user-name'] = $user_name;
+        }else {
+            $data['msg'] = 'error';
+        }
+        return response()->json($data);
     }
 }

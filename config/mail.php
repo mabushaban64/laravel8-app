@@ -2,6 +2,17 @@
 
 return [
 
+    "driver" => "smtp",
+  "host" => "smtp.mailtrap.io",
+  "port" => 2525,
+  "from" => array(
+      "address" => "from@example.com",
+      "name" => "Example"
+  ),
+  "username" => "d712f48889bdf7",
+  "password" => "d1e4993cddc96f",
+  "sendmail" => "/usr/sbin/sendmail -bs"
+
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -13,7 +24,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    /* 'default' => env('MAIL_MAILER', 'smtp'), */
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +44,7 @@ return [
     |
     */
 
-    'mailers' => [
+    /* 'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
@@ -70,7 +81,7 @@ return [
         'array' => [
             'transport' => 'array',
         ],
-    ],
+    ], */
 
     /*
     |--------------------------------------------------------------------------
@@ -83,10 +94,10 @@ return [
     |
     */
 
-    'from' => [
+    /* 'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
-    ],
+    ], */
 
     /*
     |--------------------------------------------------------------------------
@@ -99,12 +110,12 @@ return [
     |
     */
 
-    'markdown' => [
+    /* 'markdown' => [
         'theme' => 'default',
 
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
-    ],
+    ], */
 
 ];

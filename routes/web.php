@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,22 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {return view('pages.index');})->name('dashboard');
-Route::get('/profile', function () {return view('pages.profile');})->name('profile');
+Route::get('/', function () {return view('home');})->name('');
+Route::get('/dashboard', function () {return view('pages.index');})->middleware('auth')->name('dashboard');
 
-Route::get('/login', function () {return view('auth.signin');})->name('signin');
-Route::get('/register', function () {return view('auth.signup');})->name('signup');
-Route::get('/forget-password', function () {return view('auth.forget-password');})->name('forget-password');
 
-Route::get('/users',[UserController::class, 'index'])->name('users');
+
+Route::prefix('/users')->name('users')->middleware('auth')->group(function () {
+    Route::get('/',[UserController::class, 'index'])->name('');
+    Route::get('/get',[UserController::class, 'getUsers'])->name('.get');
+    Route::post('/store',[UserController::class, 'store'])->name('.store');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('.edit');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('.update');
+    Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('.delete');
+    Route::post('/deleteall', [UserController::class, 'deleteall'])->name('.deleteall');
+
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

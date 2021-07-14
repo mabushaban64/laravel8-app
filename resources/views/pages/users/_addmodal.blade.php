@@ -155,6 +155,7 @@
                                                 <div class="form-group">
                                                     <label>Email</label>
                                                     <input type="email" class="form-control form-control-solid form-control-lg" name="email" id="email" placeholder="john.wick@reeves.com" value="" />
+                                                    @error('email') <span class="invalid-feedback" id="email-alert" role="alert">  <strong>{{ $message }}</strong> </span>  @enderror
                                                     <span class="form-text text-muted">Please enter your email address.</span>
                                                 </div>
                                                 <!--end::Input-->

@@ -9,9 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Permission;
 use App\Models\UserPermission;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     use SoftDeletes;
     /**
@@ -36,6 +39,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -45,24 +49,47 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getPermissions()
+    /* public function getPermissions()
     {
         return $this->belongsToMany(Permission::class,'user_permissions','user_id','permission_id');
 
+    } */
+
+
+
+    public function getAvatarAttribute($image){
+
+        if($image){
+           // $image = Storage::url('public/users/'.$gravatar.'');
+          // return $image;
+           return $image;
+        }else{
+            //$image = Storage::url('public/default/default.jpg');
+            return 'default.jpg';
+        }
     }
 
-    public function hasPerm($perm){
-                                                
+    /* public function hasPerm($perm){
+
         return  $perm = Permission::select('*')
+                                    ->join('permission_roles', 'permission_roles.perm_id', '=', 'permissions.id')
+                                    ->join('user_roles', 'user_roles.role_id', '=', 'permission_roles.role_id')
+                                    ->where('permissions.name','=', $perm)
+                                    ->where('user_roles.user_id','=', $this->id)
+                                    ->count();
+
+        /* return  $perm = Permission::select('*')
                             ->join('user_permissions', 'user_permissions.permission_id', '=', 'permissions.id')
                             ->where('permissions.name','=', $perm)
                             ->where('user_permissions.user_id','=', $this->id)
-                            ->count();
+                            ->count(); 
+     } */
 
-                            
-                            
- 
-     }
+     /* public function roles()
+    {
+        return $this->belongsToMany(Role::class,'user_roles','user_id','role_id');//  classname , table name, column name in table belong to this model , another coulmn
+
+    } */
 
 
 }

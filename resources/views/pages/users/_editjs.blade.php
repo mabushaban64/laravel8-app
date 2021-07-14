@@ -60,11 +60,9 @@ var edit_KTWizard2 = function () {
                     'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                 }
             });
-                       
-            
-            var root = '{{URL::to('/')}}';
+
             var user_id = jQuery('#2_user_id').val();
-            var url = root + "/users/update/"+ user_id;
+            var url = BASE_URL + "/users/update/"+ user_id;
             var formData = new FormData(document.getElementById("2_kt_form"));
             formData.append('_method', 'PUT');
 

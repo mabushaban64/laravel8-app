@@ -56,16 +56,16 @@
 
 		// Submit event
 		_wizardObj.on('submit', function (wizard) {
-            
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                 }
             });
-            
-            
-            var root = '{{URL::to('/')}}';
-            var url = root + "/users/store";
+
+
+
+            var url = BASE_URL + "/users/store"; //custom var (BASE_URL)
             /* var formData = {
                 fname: jQuery('#fname').val(),lname: jQuery('#lname').val(),email: jQuery('#email').val(),phone: jQuery('#phone').val(),
                 avatar: jQuery('#avatar').val(),birthday: jQuery('#birthday').val(),gender: jQuery('#gender').val(),

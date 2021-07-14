@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
 
             $table->date('birthday')->nullable();
             $table->enum('gender',['m','f'])->default('m');
-            $table->string('avatar')->default('default/default.jpg');;
+            $table->string('avatar')->nullable()/* ->default('default/default.jpg') */;
 
 
             $table->string('street_address')->nullable();
@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
 
             $table->boolean('is_admin')->default(false);
-            
+
             $table->softDeletes();
             $table->timestamps();
         });

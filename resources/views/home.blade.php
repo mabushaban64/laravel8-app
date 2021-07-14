@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-home
+<a href="{{ route('home') }}"> home</a>
 @endsection

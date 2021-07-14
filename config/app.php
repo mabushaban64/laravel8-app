@@ -177,6 +177,7 @@ return [
 
         //added by me
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

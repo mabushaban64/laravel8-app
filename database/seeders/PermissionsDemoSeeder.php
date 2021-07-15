@@ -29,6 +29,8 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'users.roles']);
         Permission::create(['name' => 'users.grantRole']);
         Permission::create(['name' => 'users.revokeRole']);
+        Permission::create(['name' => 'users.Excelexport']);
+        Permission::create(['name' => 'users.PDFexport']);
 
         Permission::create(['name' => 'roles']);
         Permission::create(['name' => 'roles.permissions']);

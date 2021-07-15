@@ -260,29 +260,9 @@ jQuery(document).ready(function () {
             jQuery('#2_phone').val(data.phone);
             jQuery('#2_email').val(data.email);
 
-            var imgurl = BASE_URL + "/storage/users/"+ data.avatar;
-            /*
-            var name = data.avatar;
-            var url = BASE_URL + "/userImagePath/"+ name;
-             $.ajax({
-                type: 'GET',
-                url: url,
-                data: name,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-                    $('.bg-image').css("background-image", "url("+data+")");
-                },
-                error: function (data) {
-                    console.log(data);
-                    $('.bg-image').css("background-image", "url("+data+")");
-                }
-            }); */
+            var imgurl = BASE_URL + data.avatar;
 
             jQuery('#2_birthday').val(data.birthday);
-            //$('.bg-image').css("background-image", "url('{{ userImagePath("+data.avatar+") }}')");
             $('.bg-image').css("background-image", "url("+imgurl+")");
             jQuery('#2_gender').val(data.gender);
 

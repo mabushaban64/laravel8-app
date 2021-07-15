@@ -41,7 +41,7 @@ var kt_datatable_getUsers = function() {
             title: 'User',
             width: 250,
             template: function(row) {
-                var imgurl = BASE_URL + "/storage/users/"+ row.avatar;
+                var imgurl = BASE_URL + row.avatar;
                 //'background-image:url("+imgurl+")';
                 var user_img = 'background-image:url(' + imgurl + ')';
                 return '\

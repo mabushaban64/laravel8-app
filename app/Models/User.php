@@ -60,12 +60,12 @@ class User extends Authenticatable
     public function getAvatarAttribute($image){
 
         if($image){
-           // $image = Storage::url('public/users/'.$gravatar.'');
+            $image = Storage::url('public/users/'.$image.'');
           // return $image;
            return $image;
         }else{
-            //$image = Storage::url('public/default/default.jpg');
-            return 'default.jpg';
+            $image = Storage::url('public/default/default.jpg');
+            return $image;
         }
     }
 
@@ -82,7 +82,7 @@ class User extends Authenticatable
                             ->join('user_permissions', 'user_permissions.permission_id', '=', 'permissions.id')
                             ->where('permissions.name','=', $perm)
                             ->where('user_permissions.user_id','=', $this->id)
-                            ->count(); 
+                            ->count();
      } */
 
      /* public function roles()

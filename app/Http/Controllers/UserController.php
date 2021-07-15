@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use DataTables;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -242,5 +243,16 @@ class UserController extends Controller
             $data['msg'] = 'error';
         }
         return response()->json($data);
+    }
+
+    public function Excelexport()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function PDFexport()
+    {
+        return Excel::download(new UsersExport, 'users.pdf');
+
     }
 }

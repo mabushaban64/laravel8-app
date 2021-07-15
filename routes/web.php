@@ -36,7 +36,9 @@ Route::group(['middleware' => ['auth'/* ,'role:super-admin|users-Admin|users-lim
         Route::get('/roles/{id}', [UserController::class, 'roles'])->middleware( ['role_or_permission:super-admin|users.roles'])->name('.roles');
         Route::put('/grantRole/{id}', [UserController::class, 'grantRole'])->middleware( ['role_or_permission:super-admin|users.grantRole'])->name('.grantRole');
         Route::put('/revokeRole/{id}', [UserController::class, 'revokeRole'])->middleware( ['role_or_permission:super-admin|users.revokeRole'])->name('.revokeRole');
-        /* Route::put('/updateRole/{id}', [UserController::class, 'updateRole'])->name('.updateRole'); */
+
+        Route::get('export/excel', [UserController::class, 'Excelexport'])->middleware( ['role_or_permission:super-admin|users.Excelexport'])->name('.export.excel');
+        Route::get('export/pdf', [UserController::class, 'PDFexport'])->middleware( ['role_or_permission:super-admin|users.PDFexport'])->name('.export.pdf');
 
     });
 });
@@ -51,8 +53,6 @@ Route::prefix('/roles')->name('roles')->middleware('auth')->group(function () {
     Route::put('/revokePerm/{id}', [RolesController::class, 'revokePerm'])->middleware( ['role_or_permission:super-admin|roles.revokePermission'])->name('.revokePerm');
 });
 
-
-Route::get('/userImagePath/{value}', function($value) { return userImagePath($value); });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

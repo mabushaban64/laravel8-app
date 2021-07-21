@@ -1,3 +1,6 @@
+const general_data = {};
+
+datatable = null;
 var kt_datatable_getUsers = function() {
 
     var options = {
@@ -7,8 +10,16 @@ var kt_datatable_getUsers = function() {
             type: 'remote',
             source: {
                 read: {
-                    url: BASE_URL + '/users/get', //BASE_URL >> custom var
+                    url: BASE_URL + '/users', //BASE_URL >> custom var
                     method : 'GET',
+                   /*   map: function (t) {
+                        var e = t;
+                         t.data.forEach(row => { general_data[row.id] = row;});
+                        return void 0 !== t.data && (e = t.data), e;
+                    }  */
+                    map: function(data) {
+                        return data.data;
+                    }
                 },
             },
             pageSize: 10,
@@ -27,7 +38,6 @@ var kt_datatable_getUsers = function() {
         sortable: true,
 
         pagination: true,
-
         // columns definition
         columns: [{
             field: 'id', //ColumnName
@@ -37,7 +47,7 @@ var kt_datatable_getUsers = function() {
             selector: true, //Enable column as selector
             textAlign: 'center',
         }, {
-            field: 'user',
+            field: 'fname',
             title: 'User',
             width: 250,
             template: function(row) {
@@ -57,18 +67,7 @@ var kt_datatable_getUsers = function() {
             </div>\
              ';
             },
-        },
-        /*{
-            field: 'fName',
-            title: 'Name',
-            template: function(row) {
-                return row.fname + ' ' + row.lname;
-            },
-        }, {
-            field: 'email',
-            title: 'Email',
-            textAlign: 'left',
-        },*/  {
+        },  {
             field: 'phone',
             title: 'Phone',
         },  {
@@ -76,17 +75,16 @@ var kt_datatable_getUsers = function() {
             title: 'Birthday',
             type: 'date',
             format: 'MM/DD/YYYY',
-        },
-        /*{
+        },{
             field: 'country',
             title: 'Country',
             template: function(row) {
                 //return row.street_address + '/' + row.city + '/' + row.state + '/' + row.country;
                 return row.country;
             },
-        },*/{
-            field: 'Gender',
-            title: 'gender',
+        },{
+            field: 'gender',
+            title: 'Gender',
             // callback function support for column rendering
             template: function(row) {
                 var status = {
@@ -150,23 +148,27 @@ var kt_datatable_getUsers = function() {
     };
 
 
-    var serverSelectorDemo_users = function() {
-        // enable extension
+    return {
+        // public functions
+        init: function() {
+            // enable extension
         options.extensions = {
             // boolean or object (extension options)
             checkbox: true,
         };
 
-        options.search = { //datatable.search(value, column)
-            input: $('#kt_datatable_search_query'),
-          //  key: 'fname'
+        options.search = {
+            input: $('#search_input'),
+            // search delay in milliseconds
+            key: 'generalSearch',
+            delay: 1000,
         };
 
         var datatable = $('#kt_datatable').KTDatatable(options);
 
 
         $('#kt_datatable_search_gender').on('change', function() {
-            datatable.search($(this).val().toLowerCase(), 'Gender'); //datatable.search(value, column)
+            datatable.search($(this).val().toLowerCase(), 'gender'); //datatable.search(value, column)
         });
 
         $('#kt_datatable_search_gender').selectpicker();
@@ -200,7 +202,7 @@ var kt_datatable_getUsers = function() {
 
         $("#btn-ids").click(function (e) {
             var ids = datatable.checkbox().getSelectedId();
-            console.log(ids);
+           // console.log(ids);
 
             var url = BASE_URL + "/users/deleteall";
 
@@ -261,13 +263,6 @@ var kt_datatable_getUsers = function() {
             });
 
         });
-
-    };
-
-    return {
-        // public functions
-        init: function() {
-            serverSelectorDemo_users();
         },
     };
 

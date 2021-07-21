@@ -26,7 +26,6 @@ Route::group(['middleware' => ['auth'/* ,'role:super-admin|users-Admin|users-lim
     Route::prefix('/users')->name('users')->group(function () {
 
         Route::get('/',[UserController::class, 'index'])->middleware( ['role_or_permission:super-admin|users'])->name('');
-        Route::get('/get',[UserController::class, 'getUsers'])->middleware( ['role_or_permission:super-admin|users'])->name('.get');
         Route::post('/store',[UserController::class, 'store'])->middleware( ['role_or_permission:super-admin|users.add'])->name('.store');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->middleware( ['role_or_permission:super-admin|users.edit'])->name('.edit');
         Route::put('/update/{id}', [UserController::class, 'update'])->middleware( ['role_or_permission:super-admin|users.edit'])->name('.update');

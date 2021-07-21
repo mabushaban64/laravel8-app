@@ -9,46 +9,25 @@ use Illuminate\Support\Facades\Validator;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+//use App\Traits\MetronicPaginate;
 
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+   // use MetronicPaginate;
 
     public function index()
     {
-       $search_input = request()->query('search_input',''); //input()
-       $gender = request()->query('gender',''); //input()
+        if (request()->expectsJson()) {
 
-        return view('pages.users.index')->with('search_input',$search_input)
-                                        ->with('gender',$gender);
-    }
-    public function getUsers(){
-        $users = User::where('is_admin',0)->get();
+            // $user = User::where('is_admin',0)
+            // $users = User::where('is_admin',0)->scopeMetronicPaginate($user);
+            $users = User::where('is_admin',0)->metronicPaginate();
+              return response()->json($users);
 
-       /*  $search_input = request()->query('search_input',''); //input()
-       $gender = request()->query('gender',''); //input() */
-
-       /* $search_input = $_GET['search_input'];
-       $gender = $_GET['gender']; */
-
-
-        /* $users = User::when($search_input,function($query,$search_input){
-                            return $query->where('fname','LIKE','%'.$search_input.'%');
-                        })->when($search_input,function($query,$search_input){
-                            return $query->where('lname','LIKE','%'.$search_input.'%');
-                        })->when($search_input,function($query,$search_input){
-                            return $query->where('email','LIKE','%'.$search_input.'%');
-                        })->when($search_input,function($query,$search_input){
-                            return $query->where('phone','LIKE','%'.$search_input.'%');
-                        })->when($gender,function($query,$gender){
-                            return $query->where('gender','LIKE','%'.$gender.'%');
-                        })->get(); */
-
-        //$users = User::where('fname','LIKE','%'.$search_input.'%')->get();
-        //return response()->json(array('users'=>$users,'search_input'=>$search_input,'gender'=>$gender));
-        //dd(request()->all());
-        return response()->json($users);
+        }
+        return view('pages.users.index');
     }
 
     public function store(Request $request)

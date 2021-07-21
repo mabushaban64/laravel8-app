@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Permission;
-use App\Models\UserPermission;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
+use App\Traits\MetronicPaginate;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasRoles;
-
-    use SoftDeletes;
+    use HasFactory, Notifiable, HasRoles,SoftDeletes,MetronicPaginate;
+    
     /**
      * The attributes that are mass assignable.
      *

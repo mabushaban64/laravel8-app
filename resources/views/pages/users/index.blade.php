@@ -95,44 +95,37 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!--begin: Search Form-->
                     <!--begin::Search Form-->
-                    {{--  <div class="mb-7">
-                        <form method="get" action="{{ route('users')}}" class="form" enctype="multipart/form-data" novalidate="">
-                            @csrf
+                    <div class="mb-7">
                         <div class="row align-items-center">
                             <div class="col-lg-9 col-xl-8">
                                 <div class="row align-items-center">
-                                    <div class="col-md-4 my-2 my-md-0">
+                                    <div class="col-md-6 my-2 my-md-0">
                                         <div class="input-icon">
-                                            <input type="text" class="form-control" name="search_input" value="{{$search_input}}" placeholder="Search..." id="kt_datatable_search_query" />
+                                            <input type="text" class="form-control" placeholder="Search..." id="search_input" />
                                             <span>
                                                 <i class="flaticon2-search-1 text-muted"></i>
                                             </span>
-                                             @error('search_input') <span class="invalid-feedback" role="alert">  <strong>{{ $message }}</strong> </span>  @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4 my-2 my-md-0">
+                                    <div class="col-md-6 my-2 my-md-0">
                                         <div class="d-flex align-items-center">
                                             <label class="mr-3 mb-0 d-none d-md-block">Gender:</label>
                                             <select class="form-control" name="gender" id="kt_datatable_search_gender">
-                                                <option >All</option>
-                                                <option value="f" {{$gender == 'f'? 'selected' : '' }}>Female</option>
-                                                <option value="m" {{$gender == 'm'? 'selected' : '' }}>Male</option>
+                                                <option value="" >All</option>
+                                                <option value="f" >Female</option>
+                                                <option value="m" >Male</option>
                                             </select>
-                                              @error('gender') <span class="invalid-feedback" role="alert">  <strong>{{ $message }}</strong> </span>  @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
-                                <button  type="submit" class="btn btn-light-primary px-6 font-weight-bold">Search</button>
+                                <a href="#" class="btn btn-light-primary px-6 font-weight-bold">Search</a>
                             </div>
                         </div>
-                        </form>
-                    </div>  --}}
+                    </div>
                     <!--end::Search Form-->
-                    <!--end: Search Form-->
                     <!--begin: Selected Rows Group Action Form-->
                     <div class="mt-10 mb-5 collapse" id="kt_datatable_group_action_form">
                         <div class="d-flex align-items-center">

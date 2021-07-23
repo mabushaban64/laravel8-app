@@ -108,33 +108,7 @@
         })
         });
         }
-
-
-        {{--  removedfile: function () {
-            $(".dz-remove").on("click", function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                var imageId = $(this).parent().find(".dz-filename > span").text();
-                console.log(imageId);
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                url: BASE_URL + "/dropzone/delete/"+imageId,
-                data: { imageId: imageId},
-                type: 'DELETE',
-                success: function (data) {
-                    console.log('ok');},
-                    error: function (data) {
-                         toastr.error(data.Message);
-                    }
-                })
-
-           });
-        }  --}}
+        
         {{--  accept: function(file, done) {
             if (file.name == "justinbieber.jpg") {
                 done("Naha, you don't.");

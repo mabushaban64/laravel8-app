@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\GeneralController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -59,7 +60,14 @@ Route::prefix('/dropzone')->name('dropzone')->middleware('auth')->group(function
     Route::get('/',[DropzoneController::class, 'index'])->middleware( ['role_or_permission:super-admin|dropzone'])->name('');
     Route::post('/store',[DropzoneController::class, 'store'])->middleware( ['role_or_permission:super-admin|dropzone.store'])->name('.store');
     Route::delete('/delete/{id}', [DropzoneController::class, 'destroy'])->middleware( ['role_or_permission:super-admin|dropzone.delete'])->name('.delete');
-    Route::get('/get/{id}', [DropzoneController::class, 'get'])->middleware( ['role_or_permission:super-admin|dropzone.get'])->name('.get');
+    /* Route::get('/get/{id}', [DropzoneController::class, 'get'])->middleware( ['role_or_permission:super-admin|dropzone.get'])->name('.get'); */
+});
+
+Route::prefix('/general')->name('general')->middleware('auth')->group(function () {
+
+    Route::get('/',[GeneralController::class, 'index'])->middleware( ['role_or_permission:super-admin|general_form'])->name('');
+    Route::post('/store',[GeneralController::class, 'store'])->middleware( ['role_or_permission:super-admin|general_form.store'])->name('.store');
+    Route::get('/dataforselect2',[GeneralController::class, 'getdataforselect2'])->middleware( ['role_or_permission:super-admin|general_form'])->name('.dataforselect2');
 });
 Auth::routes();
 

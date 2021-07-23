@@ -104,6 +104,9 @@ jQuery(document).ready(function () {
                         }else{
                             $.each(data.error, function( key, value ) {
                                 $('span.'+key+'_error').text(value[0]);
+                                console.log(key);
+                                console.log(value);
+                                console.log(value[0]);
                             });
 
                             $(".print-error-msg").find("ul").html('');

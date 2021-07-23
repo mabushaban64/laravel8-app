@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth'/* ,'role:super-admin|users-Admin|users-lim
         Route::get('export/excel', [UserController::class, 'Excelexport'])->middleware( ['role_or_permission:super-admin|users.Excelexport'])->name('.export.excel');
         Route::get('export/pdf', [UserController::class, 'PDFexport'])->middleware( ['role_or_permission:super-admin|users.PDFexport'])->name('.export.pdf');
 
+        Route::get('/import/excel', [UserController::class, 'fileImportExport'])->middleware( ['role_or_permission:super-admin|users.Excelimport'])->name('.create.import.excel');
+        Route::post('/import/excel', [UserController::class, 'fileImport'])->middleware( ['role_or_permission:super-admin|users.Excelimport'])->name('.store.import.excel');
+
     });
 });
 

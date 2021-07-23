@@ -14,7 +14,7 @@ class UsersExport implements FromCollection, WithHeadings , ShouldAutoSize
     */
     public function collection()
     {
-        return User::select('fname','lname','phone','email','birthday','gender','postal_code','street_address','city','state','country')->where('is_admin',0)->get();
+        return User::select('fname','lname','phone','email',/* 'is_admin', */'birthday','gender'/* ,'street_address','postal_code','city','state' */,'country')->where('is_admin',0)->get();
     }
 
     public function headings(): array
@@ -25,12 +25,13 @@ class UsersExport implements FromCollection, WithHeadings , ShouldAutoSize
             'Last name',
             'Phone',
             'Email',
+            /* 'Password', */
             'Date of Birth',
             'Gender',
+            /* 'Address',
             'Postal code',
-            'Address',
             'City',
-            'State',
+            'State', */
             'Country',
         ];
         return $array;

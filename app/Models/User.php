@@ -14,7 +14,7 @@ use App\Traits\MetronicPaginate;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles,SoftDeletes,MetronicPaginate;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,8 +23,16 @@ class User extends Authenticatable
     protected $fillable = [
         'fname',
         'lname',
+        'phone',
         'email',
         'password',
+        'birthday',
+        'gender',
+        'street_address',
+        'postal_code',
+        'city',
+        'state',
+        'country',
     ];
 
     /**

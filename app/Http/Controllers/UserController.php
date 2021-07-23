@@ -7,6 +7,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 //use App\Traits\MetronicPaginate;
@@ -234,4 +235,27 @@ class UserController extends Controller
         return Excel::download(new UsersExport, 'users.pdf');
 
     }
+
+    public function fileImportExport()
+    {
+       return view('pages.import.index');
+    }
+
+    public function fileImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+			return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
+        /* $UsersImport = new UsersImport();
+        $UsersImport->import($request->file('file')); */
+
+        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        return response()->json();
+    }
+
 }

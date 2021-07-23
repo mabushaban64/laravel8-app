@@ -37,6 +37,8 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'roles.grantPermission']);
         Permission::create(['name' => 'roles.revokePermission']);
 
+        Permission::create(['name' => 'dropzone']);
+
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'users-Admin']);
         $role2 = Role::create(['name' => 'roles-admin']);

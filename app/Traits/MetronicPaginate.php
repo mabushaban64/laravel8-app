@@ -24,7 +24,7 @@ trait MetronicPaginate
         if ($query)
             foreach ($query as $key => $value) {
                 if (in_array($key, $columns) ) {
-                    $model->where($key, $value); //for gender field
+                    $model->where($key, $value); 
                 }
 
                 if (($key == 'generalSearch')) {

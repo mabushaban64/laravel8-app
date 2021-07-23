@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\RolesController;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,6 +52,15 @@ Route::prefix('/roles')->name('roles')->middleware('auth')->group(function () {
     Route::put('/revokePerm/{id}', [RolesController::class, 'revokePerm'])->middleware( ['role_or_permission:super-admin|roles.revokePermission'])->name('.revokePerm');
 });
 
+
+
+Route::prefix('/dropzone')->name('dropzone')->middleware('auth')->group(function () {
+
+    Route::get('/',[DropzoneController::class, 'index'])->middleware( ['role_or_permission:super-admin|dropzone'])->name('');
+    Route::post('/store',[DropzoneController::class, 'store'])->middleware( ['role_or_permission:super-admin|dropzone.store'])->name('.store');
+    Route::delete('/delete/{id}', [DropzoneController::class, 'destroy'])->middleware( ['role_or_permission:super-admin|dropzone.delete'])->name('.delete');
+    Route::get('/get/{id}', [DropzoneController::class, 'get'])->middleware( ['role_or_permission:super-admin|dropzone.get'])->name('.get');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -166,6 +166,7 @@
 		<script src="{{ asset('assets/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js') }}"></script>
 		<script src="{{ asset('assets/js/pages/crud/forms/widgets/bootstrap-daterangepicker.js') }}"></script>
 		<script src="{{ asset('assets/js/pages/crud/forms/widgets/ion-range-slider.js') }}"></script>
+		<script src="{{ asset('assets/js/pages/features/miscellaneous/blockui.js') }}"></script>
 		{{--  <script src="{{ asset('assets/js/pages/crud/forms/validation/form-widgets.js') }}"></script>  --}}
 
         <script >
@@ -186,6 +187,14 @@
                     type: type,
                     url: ajaxurl,
                     data: formData,
+                    beforeSend: function(){
+                        $(document).find('span.error-text').text('');
+                        KTApp.blockPage({
+                            overlayColor: '#000000',
+                            state: 'danger',
+                            message: 'Please wait...'
+                        });
+                    },
                     processData: false,
                     contentType: false,
                     dataType: 'json',
@@ -238,6 +247,10 @@
                     error: function (data) {
                         console.log(data);
                     },
+                    complete: function(data){
+
+                        KTApp.unblockPage();
+                   }
                 });
             });
             (function() {

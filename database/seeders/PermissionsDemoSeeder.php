@@ -31,6 +31,7 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'users.revokeRole']);
         Permission::create(['name' => 'users.Excelexport']);
         Permission::create(['name' => 'users.PDFexport']);
+        Permission::create(['name' => 'users.Excelimport']);
 
         Permission::create(['name' => 'roles']);
         Permission::create(['name' => 'roles.permissions']);
@@ -38,6 +39,11 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'roles.revokePermission']);
 
         Permission::create(['name' => 'dropzone']);
+        Permission::create(['name' => 'dropzone.store']);
+        Permission::create(['name' => 'dropzone.delete']);
+
+        Permission::create(['name' => 'general_form']);
+        Permission::create(['name' => 'general_form.store']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'users-Admin']);

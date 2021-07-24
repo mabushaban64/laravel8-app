@@ -24,6 +24,16 @@
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 
+        <style>
+            .aside {background-color: {{ App\Models\Settings::first()->color }}; }
+            .aside-menu {background-color: {{ App\Models\Settings::first()->color }};}
+            .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-heading, .aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link {background-color: {{ App\Models\Settings::first()->color }};}
+            .brand { background-color: {{ App\Models\Settings::first()->color }}; }
+            .header-mobile { background-color: {{ App\Models\Settings::first()->color }}; }
+            html,body {font-family: {{ App\Models\Settings::first()->font }}}
+            {{--  html,body {font-family: "Lucida Console"}  --}}
+        }
+    </style>
         @yield('css')
 	</head>
 

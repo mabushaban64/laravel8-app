@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -25,7 +26,6 @@ Route::get('/dashboard', function () {return view('pages.index');})->middleware(
 Route::group(['middleware' => ['auth'/* ,'role:super-admin|users-Admin|users-limitted' */]], function () {
     //
     Route::prefix('/users')->name('users')->group(function () {
-
         Route::get('/',[UserController::class, 'index'])->middleware( ['role_or_permission:super-admin|users'])->name('');
         Route::post('/store',[UserController::class, 'store'])->middleware( ['role_or_permission:super-admin|users.add'])->name('.store');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->middleware( ['role_or_permission:super-admin|users.edit'])->name('.edit');
@@ -72,6 +72,14 @@ Route::prefix('/general')->name('general')->middleware('auth')->group(function (
     Route::post('/store',[GeneralController::class, 'store'])->middleware( ['role_or_permission:super-admin|general_form.store'])->name('.store');
     Route::get('/dataforselect2',[GeneralController::class, 'getdataforselect2'])->middleware( ['role_or_permission:super-admin|general_form'])->name('.dataforselect2');
 });
+
+Route::prefix('/settings')->name('settings')->middleware('auth')->group(function () {
+
+    Route::get('/',[SettingsController::class, 'index'])->middleware( ['role_or_permission:super-admin|settings'])->name('');
+    Route::post('/store',[SettingsController::class, 'store'])->middleware( ['role_or_permission:super-admin|settings.store'])->name('.store');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

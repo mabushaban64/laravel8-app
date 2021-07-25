@@ -9,6 +9,6 @@ class Settings extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'color',
+        'color', 'font',
     ];
 }

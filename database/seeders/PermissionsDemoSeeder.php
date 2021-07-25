@@ -45,9 +45,16 @@ class PermissionsDemoSeeder extends Seeder
         Permission::create(['name' => 'general_form']);
         Permission::create(['name' => 'general_form.store']);
 
+        Permission::create(['name' => 'settings']);
+        Permission::create(['name' => 'settings.store']);
+
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'users-Admin']);
         $role2 = Role::create(['name' => 'roles-admin']);
+        $role2 = Role::create(['name' => 'Import-admin']);
+        $role2 = Role::create(['name' => 'Form-admin']);
+        $role2 = Role::create(['name' => 'File-upload-admin']);
+        $role2 = Role::create(['name' => 'settings-admin']);
         $role3 = Role::create(['name' => 'super-admin']);
 
 

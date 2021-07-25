@@ -9,6 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="scroll scroll-pull" data-scroll="true" data-height="400">
                 <div class="alert alert-danger mb-2 print-error-msg" role="alert" style="display:none;">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <ul></ul>
@@ -185,6 +186,7 @@
                     </div>
                     <!--begin::Card body-->
                 </div>
+            </div>
                 <!--end::Card-->
             </div>
             <div class="modal-footer">

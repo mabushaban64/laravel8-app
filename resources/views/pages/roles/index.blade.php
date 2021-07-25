@@ -75,7 +75,8 @@
 </div>
 @endsection
 @section('scripts')
-        @include('pages.roles._js')
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
 		<script src="{{ asset('assets/js/pages/features/miscellaneous/blockui.js') }}"></script>
+        @include('pages.roles._js')
+
 @endsection

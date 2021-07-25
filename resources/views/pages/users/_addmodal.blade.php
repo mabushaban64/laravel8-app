@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="scroll scroll-pull" data-scroll="true" data-height="500">
                 <div class="alert alert-danger mb-2 print-error-msg" role="alert" style="display:none;">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <ul></ul>
@@ -305,6 +305,7 @@
                 </div>
                 <!--end: Wizard-->
             </div>
+        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
                 {{--  <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>  --}}

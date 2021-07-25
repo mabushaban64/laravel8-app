@@ -22,6 +22,9 @@ jQuery(document).ready(function () {
             jQuery('#btn-save').val("grant");
             jQuery('#grantRoleForm').trigger("reset");
             jQuery('#grantRevokeModal').modal('show');
+            $('span.permission_error').text(" ");
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','none');
             document.getElementById("formModalLabel").innerHTML = 'Grant permissions to Role : '+data.role.name+' ';
         });
     });
@@ -41,6 +44,9 @@ jQuery(document).ready(function () {
             jQuery('#btn-save').val("revoke");
             jQuery('#grantRoleForm').trigger("reset");
             jQuery('#grantRevokeModal').modal('show');
+            $('span.permission_error').text(" ");
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','none');
             document.getElementById("formModalLabel").innerHTML = 'Revoke permissions to Role : '+data.role.name+' ';
         });
     });
@@ -70,6 +76,11 @@ jQuery(document).ready(function () {
             dataType: 'json',
             beforeSend:function(){
                 $(document).find('span.error-text').text('');
+                KTApp.blockPage({
+                    overlayColor: '#000000',
+                    state: 'danger',
+                    message: 'Please wait...'
+                });
             },
             success: function (data) {
                         if($.isEmptyObject(data.error)){
@@ -116,7 +127,11 @@ jQuery(document).ready(function () {
             },
             error: function (data) {
                 console.log(data);
-            }
+            },
+            complete: function(data){
+
+                KTApp.unblockPage();
+           }
         });
       });
 
